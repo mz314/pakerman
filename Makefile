@@ -1,4 +1,4 @@
-paker: turnableAnimation animation gameLogic pakermanEntity pakermanPlayer pakerWindow
+paker: turnableAnimation animation gameLogic pakermanEntity pakermanPlayer pakerWindow particles
 	javac paker.java
 	
 animation:
@@ -17,6 +17,9 @@ pakermanPlayer:
 	
 pakerWindow:
 	javac pakerWindow.java
+	
+particles:
+	javac particles.java
 	
 clean:
 	rm *.class

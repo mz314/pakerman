@@ -7,7 +7,8 @@ class pakermanPlayer extends pakermanEntity {
  public void loadImg() {
    Toolkit toolkit = Toolkit.getDefaultToolkit();
    img = toolkit.getImage(this.getMyImage());
-  anim=new turnableAnimation(this.getMyImage(),24,34,4,10,0);
+  anim=new animation(this.getMyImage(),24,34,4,10,0);
+   anim.flip(90);
    anim.animate();
    x=200;
    y=200;
