@@ -9,7 +9,7 @@ import java.awt.geom.AffineTransform;
 
 class animation implements Runnable {
  protected int frame_width,frame_height,frame_count,interval,current_frame_i=0,offsetx;
- protected String file;
+ protected String dir;
  Toolkit tk;
  
  BufferedImage frames_image,frames[];
@@ -18,7 +18,7 @@ class animation implements Runnable {
   for(int i=0; i<frames.length; i++) {
   BufferedImage flipped=new BufferedImage(frames[i].getWidth(),frames[i].getHeight(),frames[i].getType());
   AffineTransform rotated=new AffineTransform();
-  rotated.rotate(Math.toRadians(degrees),frames[i].getWidth()/2,frames[i].getHeight()/2+1);
+  rotated.rotate(Math.toRadians(degrees),frames[i].getWidth()/2,frames[i].getHeight()/2);
   Graphics2D fg=flipped.createGraphics();
   fg.setTransform(rotated);
   fg.drawImage(frames[i],0,0,null);
@@ -43,17 +43,21 @@ class animation implements Runnable {
  
  protected BufferedImage [] loadFile() {
  BufferedImage frame_facing[]=new BufferedImage[frame_count];
- try {
+ String fn;
+ for(int i=0; i<frame_count; i++) {
+  fn=dir+"/"+Integer.toString(i)+".png";
+  try {
  
-  frames_image=ImageIO.read(new File(file));
+  frames_image=ImageIO.read(new File(fn));
  
  
   } catch(Exception e) {
-  System.out.println(file + " error.");
+  System.out.println(fn + " error.");
   }
-  for(int i=0; i<frame_count; i++) {
-   frame_facing[i]=frames_image.getSubimage(i*(frame_width+offsetx),0,(frame_width-offsetx),frame_height);
-  }
+  frame_facing[i]=frames_image;
+  
+ }
+ 
   return frame_facing;
  }
  
@@ -67,11 +71,11 @@ class animation implements Runnable {
   g.drawImage(frames[current_frame_i],x,y,frame_width,frame_height,null);
  }
  
- public animation(String file,int frame_width,int frame_height,int frame_count,int fps,int offsetx) {
+ public animation(String dir,int frame_width,int frame_height,int frame_count,int fps,int offsetx) {
   this.frame_width=frame_width;
   this.frame_height=frame_height;
   this.frame_count=frame_count;
-  this.file=file;
+  this.dir=dir;
   this.offsetx=offsetx;
   tk=Toolkit.getDefaultToolkit();
   

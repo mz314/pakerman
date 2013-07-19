@@ -18,12 +18,13 @@ class pakerWindow extends JFrame implements KeyListener {
  
  public void  keyPressed(KeyEvent k) {
   char c=k.getKeyChar();
+  pakermanPlayer p=gl.getPlayer();
   System.out.println(c);
   switch (c) {
-   case 'w': gl.setDeltaY(-1); break;
-   case 's': gl.setDeltaY(1); break;
-   case 'a': gl.setDeltaX(-1); break;
-   case 'd': gl.setDeltaX(1); break;
+   case 'w': gl.setDeltaY(-1); p.facing(facing_dirs.UP); break;
+   case 's': gl.setDeltaY(1); p.facing(facing_dirs.DOWN); break;
+   case 'a': gl.setDeltaX(-1);  p.facing(facing_dirs.LEFT); break;
+   case 'd': gl.setDeltaX(1);  p.facing(facing_dirs.RIGHT); break;
   }
  }
  public void keyReleased(KeyEvent k) {}
