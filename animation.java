@@ -14,7 +14,7 @@ class animation implements Runnable {
  
  BufferedImage frames_image,frames[];
  
- public void flip(int degrees) { //TODO: nie scinac
+ /*public void flip(int degrees) { //TODO: nie scinac
   for(int i=0; i<frames.length; i++) {
   BufferedImage flipped=new BufferedImage(frames[i].getWidth(),frames[i].getHeight(),frames[i].getType());
   AffineTransform rotated=new AffineTransform();
@@ -25,7 +25,7 @@ class animation implements Runnable {
   fg.dispose();
   frames[i]=flipped;
   }
- }
+ }*/
  
  public void animate() {
   new Thread(this).start();
