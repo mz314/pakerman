@@ -10,24 +10,18 @@ enum facing_dirs {
 };
 
 class pakermanPlayer extends pakermanEntity {
- // lepiej zrobić TUTAJ 4 animacjie dla każdego kierunku
  turnableAnimation anim;
  facing_dirs facing;
  private
  int rotation=0;
 
  public void facing(facing_dirs facing) {
-
-  
-  
-  switch(facing) {
-   case LEFT: anim.setFacing(3); break;
-   case RIGHT: anim.setFacing(0); break;
-   case UP: anim.setFacing(2); break;
-   case DOWN: anim.setFacing(1); break;
+ switch(facing) {
+   case LEFT: anim.setFacing(0); break;
+   case RIGHT: anim.setFacing(2); break;
+   case UP: anim.setFacing(1); break;
+   case DOWN: anim.setFacing(3); break;
   }
-  
- 
   this.facing=facing;
  }
  
@@ -41,6 +35,7 @@ class pakermanPlayer extends pakermanEntity {
    y=200;
    w=32;
    h=32;
+   anim.setFacing(2);
  }
 
   public String getMyImage() {
