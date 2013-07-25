@@ -1,3 +1,5 @@
+//krance planszy zawsze jako teleporty
+
 import java.util.List;
 import java.applet.*;
 

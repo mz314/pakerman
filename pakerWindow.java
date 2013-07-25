@@ -21,7 +21,7 @@ class pakerWindow extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent k) {
         char c = k.getKeyChar();
         pakermanPlayer p = gl.getPlayer();
-        System.out.println(c);
+       // System.out.println(c);
         switch (c) {
             case 'w':
                 gl.setDeltaY(-1);
@@ -52,12 +52,8 @@ class pakerWindow extends JFrame implements KeyListener {
         Graphics2D g = (Graphics2D) bi.createGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
-
         gl.getPlayer().show(g);
-
-
         Graphics2D b = (Graphics2D) buffer.getDrawGraphics();
-
         b.drawImage(bi, 0, 0, null);
         buffer.show();
         b.dispose();
