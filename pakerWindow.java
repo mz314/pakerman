@@ -19,25 +19,28 @@ class pakerWindow extends JFrame implements KeyListener {
     gameLogic gl;
 
     public void keyPressed(KeyEvent k) {
-        char c = k.getKeyChar();
+        int c = k.getKeyCode();
         pakermanPlayer p = gl.getPlayer();
-       // System.out.println(c);
+        //System.out.println(c);
         switch (c) {
-            case 'w':
+            case KeyEvent.VK_UP:
                 gl.setDeltaY(-1);
                 p.facing(facing_dirs.UP);
                 break;
-            case 's':
+            case KeyEvent.VK_DOWN:
                 gl.setDeltaY(1);
                 p.facing(facing_dirs.DOWN);
                 break;
-            case 'a':
+            case KeyEvent.VK_LEFT:
                 gl.setDeltaX(-1);
                 p.facing(facing_dirs.LEFT);
                 break;
-            case 'd':
+            case KeyEvent.VK_RIGHT:
                 gl.setDeltaX(1);
                 p.facing(facing_dirs.RIGHT);
+                break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
                 break;
         }
     }
