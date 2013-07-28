@@ -24,19 +24,19 @@ class pakerWindow extends JFrame implements KeyListener {
         //System.out.println(c);
         switch (c) {
             case KeyEvent.VK_UP:
-                gl.setDeltaY(-1);
+                gl.getPlayer().setDeltaY(-1);
                 p.facing(facing_dirs.UP);
                 break;
             case KeyEvent.VK_DOWN:
-                gl.setDeltaY(1);
+                gl.getPlayer().setDeltaY(1);
                 p.facing(facing_dirs.DOWN);
                 break;
             case KeyEvent.VK_LEFT:
-                gl.setDeltaX(-1);
+                gl.getPlayer().setDeltaX(-1);
                 p.facing(facing_dirs.LEFT);
                 break;
             case KeyEvent.VK_RIGHT:
-                gl.setDeltaX(1);
+                gl.getPlayer().setDeltaX(1);
                 p.facing(facing_dirs.RIGHT);
                 break;
             case KeyEvent.VK_ESCAPE:

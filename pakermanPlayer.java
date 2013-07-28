@@ -10,10 +10,9 @@ enum facing_dirs {
 };
 
 class pakermanPlayer extends pakermanEntity {
- turnableAnimation anim;
- facing_dirs facing;
- private
- int rotation=0;
+ protected turnableAnimation anim;
+ protected facing_dirs facing;
+ protected int rotation=0;
 
  public void facing(facing_dirs facing) {
  switch(facing) {

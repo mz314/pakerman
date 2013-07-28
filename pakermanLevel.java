@@ -16,7 +16,7 @@ public class pakermanLevel {
         int cnt=w*h;
         data=new byte[cnt];
         for(int i=0; i<cnt; i++)
-            data[i]=0; //0 = empty space 1 = normal dot 2 = big dot
+            data[i]=0; //0 = empty space 1 = normal dot 2 = big dot 3 = teleport 4 = wall
     }
     
     pakermanLevel(String fn) {

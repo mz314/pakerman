@@ -9,10 +9,12 @@ class gameLogic extends Thread {
     boolean exit = false;
     pakermanPlayer player;
     Applet applet;
-    int deltax = 1, deltay = 0;
+   
     private List<pakermanEntity> entities; //to level (?)
     //public spawnPlayer
 
+   
+    
     public gameLogic() {
     }
 
@@ -33,25 +35,12 @@ class gameLogic extends Thread {
         entities.add(e);
     }
 
-    public void setDeltaX(int deltax) {
-        if (this.deltay != 0) {
-            this.deltay = 0;
-        }
-        this.deltax = deltax;
-    }
-
-    public void setDeltaY(int deltay) {
-        if (this.deltax != 0) {
-            this.deltax = 0;
-        }
-        this.deltay = deltay;
-
-    }
+   
 
     public void run() {
         long stime = System.nanoTime();
         while (!exit) {
-            player.move(deltax, deltay);
+            player.moveDelta();
             try {
                 Thread.sleep(10);
             } catch (Exception e) {

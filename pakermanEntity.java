@@ -5,9 +5,26 @@ import java.awt.Frame;
 import java.awt.image.BufferedImage;
 
 abstract class pakermanEntity {
- animation anim;
+  protected int deltax = 1, deltay = 0;
+  protected animation anim;
  public int x,y,w,h;
- Image img;
+ protected  Image img;
+ 
+  public void setDeltaX(int deltax) {
+        if (this.deltay != 0) {
+            this.deltay = 0;
+        }
+        this.deltax = deltax;
+    }
+
+    public void setDeltaY(int deltay) {
+        if (this.deltax != 0) {
+            this.deltax = 0;
+        }
+        this.deltay = deltay;
+
+    }
+ 
  public void loadImg() {
    Toolkit toolkit = Toolkit.getDefaultToolkit();
    img = toolkit.getImage(this.getMyImage());
@@ -22,6 +39,10 @@ abstract class pakermanEntity {
  public void move(int deltax,int deltay)  {
   x+=deltax;
   y+=deltay;
+ }
+ 
+ public void moveDelta() {
+     this.move(deltax,deltay);
  }
  
  public void show(Graphics2D g) {
