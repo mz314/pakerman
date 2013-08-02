@@ -9,7 +9,7 @@ enum facing_dirs {
  RIGHT
 };
 
-class pakermanPlayer extends pakermanEntity {
+class pakermanPlayer extends pakermanCharacter {
  protected turnableAnimation anim;
  protected facing_dirs facing;
  protected int rotation=0;

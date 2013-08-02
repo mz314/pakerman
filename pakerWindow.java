@@ -9,6 +9,7 @@ import java.awt.Toolkit;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyListener.*;
 import java.awt.event.*;
+import java.util.List;
 
 class pakerWindow extends JFrame implements KeyListener {
 
@@ -55,7 +56,13 @@ class pakerWindow extends JFrame implements KeyListener {
         Graphics2D g = (Graphics2D) bi.createGraphics();
         g.setColor(Color.black);
         g.fillRect(0, 0, getWidth(), getHeight());
-        gl.getPlayer().show(g);
+        //gl.getPlayer().show(g);
+        List<pakermanEntity> objects=gl.getObjects();
+        List<pakermanEntity> obstacles=gl.getLevelObjects();
+        for(pakermanEntity o : objects ) 
+         o.show(g);
+        for(pakermanEntity o : obstacles ) 
+            o.show(g);
         Graphics2D b = (Graphics2D) buffer.getDrawGraphics();
         b.drawImage(bi, 0, 0, null);
         buffer.show();

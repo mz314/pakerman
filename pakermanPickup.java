@@ -1,5 +1,5 @@
 
-public class pakermanPickup extends pakermanEntity {
+public class pakermanPickup extends pakermanObject {
     //protected 
     
     @Override public String getMyImage() {
