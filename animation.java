@@ -19,7 +19,7 @@ class animation implements Runnable, animationInteface {
     protected int frame_width, frame_height, frame_count, interval, current_frame_i = 0, offsetx;
     protected String dir;
     Toolkit tk;
-    boolean exit = false;
+    boolean exit = false,rd=false;
     BufferedImage frames_image, frames[];
 
     public void flip(int degrees) {
@@ -81,9 +81,14 @@ class animation implements Runnable, animationInteface {
     }
 
     public void show(Graphics2D g, int x, int y) {
-        g.drawImage(frames[current_frame_i], x, y, frame_width, frame_height, null);
+        // here get part of the screen
+    	g.drawImage(frames[current_frame_i], x, y, frame_width, frame_height, null);
     }
 
+    public void setRedraw(boolean rd) {
+     this.rd=rd;	
+    }
+    
     public animation(String dir, int frame_width, int frame_height, int frame_count, int fps, int offsetx) {
         this.frame_width = frame_width;
         this.frame_height = frame_height;

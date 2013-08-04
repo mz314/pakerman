@@ -4,14 +4,15 @@ import java.awt.*;
 class paker {
  
  public static void main(String args[]) {
-  gameLogic game=new gameLogic();
-  game.setUp();
+  gameLogic game=new gameLogic(640,480);
+ 
   pakerWindow win=new pakerWindow(game);
+  game.setUp();
   win.c=new Color(0,0,0);
   int inc=1;
   while(true) {
    try {
-   Thread.sleep(1);
+   //Thread.sleep(1);
    } catch(Exception e) {}
     /*win.c=new Color(win.x,win.x,win.x);
     win.x+=inc;

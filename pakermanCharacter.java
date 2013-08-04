@@ -1,8 +1,10 @@
+import java.awt.Graphics2D;
+
 
 abstract class pakermanCharacter extends pakermanEntity {
 
     protected int deltax = 1, deltay = 0;
-
+    
     public void moveDelta() {
         this.move(deltax, deltay);
     }

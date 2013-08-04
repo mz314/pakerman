@@ -11,6 +11,7 @@ abstract class pakermanEntity extends Object{
     protected animation anim;
     public int x, y, w, h;
     protected Image img;
+    boolean drawn=false;
 
    
 
@@ -40,8 +41,10 @@ abstract class pakermanEntity extends Object{
 
     public void show(Graphics2D g) {
         //BufferedImage img=anim.getCurrentFrame();
-        if(img!=null)
+        //if(img!=null && drawn==false) {
         	g.drawImage(img, x, y, w, h, null);
+        //	drawn=true;
+      //  }
         	//anim.show(g, x, y);
         //g.fillRect(x,y,10,10);
     }

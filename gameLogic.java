@@ -17,14 +17,17 @@ class gameLogic extends Thread {
     Applet applet;
     protected pakermanLevel level;
     List<pakermanEntity> objects=new ArrayList<pakermanEntity>(); 
+    public int w,h;
     //public spawnPlayer
 
    
     
-    public gameLogic() {
+    public gameLogic(int w,int h) {
      //objects=new entitiesList();
-        level=new pakermanLevel(32,32);
-        level.loadImages();
+        this.w=w;
+        this.h=h;
+    	level=new pakermanLevel(32,32);
+        level.loadImages(w,h);
     }
 
     public void setUp() {

@@ -15,10 +15,16 @@ class pakerWindow extends JFrame implements KeyListener {
 
     BufferedImage bi;
     BufferStrategy buffer;
-    public int x = 10, y = 100;
+    public int x = 10, y = 100,w,h;
     public Color c = Color.red;
     gameLogic gl;
-
+    boolean drawn=false;
+    List<pakermanEntity> objects;
+    List<pakermanEntity> obstacles;
+    public void paint(Graphics g) {
+    	
+    }
+    
     public void keyPressed(KeyEvent k) {
         int c = k.getKeyCode();
         pakermanPlayer p = gl.getPlayer();
@@ -53,16 +59,23 @@ class pakerWindow extends JFrame implements KeyListener {
     }
 
     public void render() {
-        Graphics2D g = (Graphics2D) bi.createGraphics();
-        g.setColor(Color.black);
-        g.fillRect(0, 0, getWidth(), getHeight());
-        //gl.getPlayer().show(g);
-        List<pakermanEntity> objects=gl.getObjects();
-        List<pakermanEntity> obstacles=gl.getLevelObjects();
-        for(pakermanEntity o : objects ) 
-         o.show(g);
-        for(pakermanEntity o : obstacles ) 
-            o.show(g);
+     
+    	Graphics2D g = (Graphics2D) bi.createGraphics();
+        //g.setColor(Color.black);
+        //g.fillRect(0, 0, getWidth(), getHeight());
+        gl.getPlayer().show(g);
+        
+    	if(!drawn) {
+    		for(pakermanEntity o : obstacles ) 
+                o.show((Graphics2D)g);
+        	//drawn=false;
+        	
+        	
+        //drawn=true;
+    	}
+        //for(pakermanEntity o : objects ) 
+        // o.show(g);
+        
         Graphics2D b = (Graphics2D) buffer.getDrawGraphics();
         b.drawImage(bi, 0, 0, null);
         buffer.show();
@@ -75,9 +88,9 @@ class pakerWindow extends JFrame implements KeyListener {
         this.gl = gl;
         setIgnoreRepaint(true);
         setVisible(true);
-        setSize(640, 480);
+        setSize(gl.w, gl.h);
         JComponent c = (JComponent) getContentPane();
-        c.setOpaque(false);
+        c.setOpaque(true);
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         GraphicsConfiguration gc = gd.getDefaultConfiguration();
@@ -87,6 +100,12 @@ class pakerWindow extends JFrame implements KeyListener {
         bi = gc.createCompatibleImage(getWidth(), getHeight());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addKeyListener(this);
+        
+        objects=gl.getObjects();
+        obstacles=gl.getLevelObjects();
+        
         gl.start();
+        //repaint();
+        
     }
 }

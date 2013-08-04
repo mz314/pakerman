@@ -29,13 +29,24 @@ public class pakermanLevel {
 		// data=File.readAllBytes(fn);
 	}
 
-	public boolean loadImages(int winw,int winh) { //will be moved
-		for(pakermanEntity o: obstacles) {
-			o.loadImg(100,100,10,10);
+	public boolean loadImages(int winw, int winh) { // will be moved
+		// int cnt=winw*winh;
+		int rows = obstacles.size() / this.width, cols = obstacles.size()
+				/ this.height, ow = 5, oh = 5, ox = ow/2, oy = oh,
+				spacing=1;
+		
+
+		for (int i = 0; i < obstacles.size(); i++) {
+			obstacles.get(i).loadImg(ox, oy, ow, oh);
+			if (i % (rows+1) == 0) {
+				oy += oh+spacing;
+				ox = 0;
+			}
+			ox += ow+spacing;
 		}
 		return true;
 	}
-	
+
 	pakermanLevel(int w, int h) { // for testing
 		this.width = w;
 		this.height = h;
@@ -47,6 +58,7 @@ public class pakermanLevel {
 										// dot 3 = teleport 4 = wall
 		for (int i = 0; i < cnt; i++)
 			obstacles.add(new pakermanDot(dotType.normal));
+		System.out.println(cnt);
 	}
 
 	pakermanLevel(String fn) {
