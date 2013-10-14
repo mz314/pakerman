@@ -61,18 +61,19 @@ class pakerWindow extends JFrame implements KeyListener {
     public void render() {
      
     	Graphics2D g = (Graphics2D) bi.createGraphics();
-        //g.setColor(Color.black);
-        //g.fillRect(0, 0, getWidth(), getHeight());
-        gl.getPlayer().show(g);
+        g.setColor(Color.black);
+        g.fillRect(0, 0, getWidth(), getHeight());
+        //g.setColor(Color.white);
+       gl.getPlayer().show(g);
         
-    	if(!drawn) {
+    	
     		for(pakermanEntity o : obstacles ) 
                 o.show((Graphics2D)g);
         	//drawn=false;
         	
         	
         //drawn=true;
-    	}
+    	
         //for(pakermanEntity o : objects ) 
         // o.show(g);
         

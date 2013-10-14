@@ -26,7 +26,8 @@ class gameLogic extends Thread {
      //objects=new entitiesList();
         this.w=w;
         this.h=h;
-    	level=new pakermanLevel(32,32);
+    	System.out.println("W: "+w+"H: "+h);
+        level=new pakermanLevel(32,32);
         level.loadImages(w,h);
     }
 

@@ -4,7 +4,7 @@ import java.awt.*;
 class paker {
  
  public static void main(String args[]) {
-  gameLogic game=new gameLogic(640,480);
+  gameLogic game=new gameLogic(623,645);
  
   pakerWindow win=new pakerWindow(game);
   game.setUp();

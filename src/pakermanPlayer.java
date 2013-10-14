@@ -42,7 +42,7 @@ class pakermanPlayer extends pakermanCharacter {
   }
   
   public void show(Graphics2D g) {
-
+   //   g.drawRect(x, y, 10, 10);
    anim.show(g,x,y);
  
  }
