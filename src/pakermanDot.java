@@ -13,6 +13,8 @@ class pakermanDot extends pakermanObject {
     }
 
     @Override public String getMyImage() {
-       return "dot_small.png";
+       if(this.type==dotType.normal)
+         return "dot_small.png";
+       return "dot_big.png";
    }
 }

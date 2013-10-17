@@ -10,7 +10,8 @@
 
 enum obstacleType {
  horizontal,
- vertical
+ vertical,
+ none
 }
 
 public class pakermanObstacle extends pakermanEntity{
@@ -19,6 +20,8 @@ public class pakermanObstacle extends pakermanEntity{
     pakermanObstacle(obstacleType type) {
         this.type=type;
     }
+    
+    
     
     public String getMyImage() {
         if (type==obstacleType.horizontal)

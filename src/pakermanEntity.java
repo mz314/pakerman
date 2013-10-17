@@ -13,6 +13,8 @@ abstract class pakermanEntity extends Object {
     boolean drawn = false;
     public boolean square = false;
 
+    
+    
     public void loadImg(int x, int y, int w, int h) {
 
         if (!square) {
@@ -22,10 +24,10 @@ abstract class pakermanEntity extends Object {
             BufferedImage tmpimg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
 
             Graphics2D g = tmpimg.createGraphics();
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.WHITE);
             g.fillOval(0, 0, w, h);
             //g.fillRect(0, 0, w, h);
-            g.setColor(Color.YELLOW);
+            g.setColor(Color.WHITE);
             g.drawOval(0, 0, w, h);
             //g.drawRect(0, 0, w, h);
 
@@ -56,7 +58,7 @@ abstract class pakermanEntity extends Object {
     public void show(Graphics2D g) {
         //BufferedImage img=anim.getCurrentFrame();
         //if(img!=null && drawn==false) {
-        g.drawImage(img, x, y, w, h, null);
+        g.drawImage(img, x, y, null);
         // g.drawRect(x, y, 5, 5);
         //	drawn=true;
         //  }
