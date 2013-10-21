@@ -5,6 +5,8 @@ import java.awt.Toolkit;
 import java.awt.Frame;
 import java.awt.image.BufferedImage;
 
+
+
 abstract class pakermanEntity extends Object {
 
     protected animation anim;
@@ -14,25 +16,33 @@ abstract class pakermanEntity extends Object {
     public boolean square = false;
 
     
+    int offsetx() {
+        return 0;
+    }
+    int offsety() {
+        return 0;
+    }
+    
     
     public void loadImg(int x, int y, int w, int h) {
 
-        if (!square) {
-            this.loadImg();
-
-        } else {
-            BufferedImage tmpimg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
-
-            Graphics2D g = tmpimg.createGraphics();
-            g.setColor(Color.WHITE);
-            g.fillOval(0, 0, w, h);
-            //g.fillRect(0, 0, w, h);
-            g.setColor(Color.WHITE);
-            g.drawOval(0, 0, w, h);
-            //g.drawRect(0, 0, w, h);
-
-            img = (Image) tmpimg;
-        }
+//        if (!square) {
+//         
+//
+//        } else {
+//            BufferedImage tmpimg = new BufferedImage(w, h, BufferedImage.TYPE_INT_ARGB);
+//
+//            Graphics2D g = tmpimg.createGraphics();
+//            g.setColor(Color.WHITE);
+//            g.fillOval(0, 0, w, h);
+//            //g.fillRect(0, 0, w, h);
+//            g.setColor(Color.WHITE);
+//            g.drawOval(0, 0, w, h);
+//            //g.drawRect(0, 0, w, h);
+//
+//            img = (Image) tmpimg;
+//        }
+           this.loadImg();
         this.w = w;
         this.h = h;
         this.x = x;
@@ -50,6 +60,13 @@ abstract class pakermanEntity extends Object {
 
     }
 
+    public void place(int x, int y, int w, int h) {
+        this.x=x;
+        this.y=y;
+        this.w=w;
+        this.h=h;
+    }
+    
     public void move(int deltax, int deltay) {
         x += deltax;
         y += deltay;

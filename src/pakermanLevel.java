@@ -1,4 +1,12 @@
-
+/*
+ * Wszystkie obiekty mają być tego samego rozmiaru, nieważne czy mała czy duża kulka, przeszkoda, duszek = 32x32
+ * Jeśli coś jest faktycznie mniejsze to ma być wyśrodkowane na przeźroczystym tle.
+ * Ściany mają być kwadratowe i jednego typu. Wyeliminować offsety.
+ * zrobić górne dolne i zakręty
+ * 
+ * 
+ * 
+ */
 import java.util.List;
 import java.util.ArrayList;
 import java.nio.file.Path;

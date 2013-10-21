@@ -21,6 +21,19 @@ public class pakermanObstacle extends pakermanEntity{
         this.type=type;
     }
     
+    int offsetx() {
+        if(type==obstacleType.horizontal)
+          return -this.w;
+        else
+            return 0;
+    }
+    
+    int offsety() {
+      if(type==obstacleType.horizontal)
+          return 0;
+      else 
+          return -(int)(this.h*1.5);
+    }
     
     
     public String getMyImage() {
