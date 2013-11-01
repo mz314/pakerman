@@ -72,15 +72,24 @@ abstract class pakermanEntity extends Object {
         y += deltay;
     }
 
+    public boolean collision(pakermanEntity e) {
+        int ew=e.x+e.w,ww=this.x+this.w,eh=e.y+e.h,hh=this.y+this.h;
+        
+        if(x<e.x+e.w && x+w>e.x && y<e.y+e.h && y+h>e.y) {
+       
+            return true;
+             
+        }
+           
+        else {
+            
+            return false;
+            
+        }
+    }
+    
     public void show(Graphics2D g) {
-        //BufferedImage img=anim.getCurrentFrame();
-        //if(img!=null && drawn==false) {
         g.drawImage(img, x, y, null);
-        // g.drawRect(x, y, 5, 5);
-        //	drawn=true;
-        //  }
-        //anim.show(g, x, y);
-        //g.fillRect(x,y,10,10);
     }
 
     abstract public String getMyImage();

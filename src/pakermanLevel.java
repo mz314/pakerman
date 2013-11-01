@@ -7,6 +7,7 @@
  * 
  * 
  */
+
 import java.util.List;
 import java.util.ArrayList;
 import java.nio.file.Path;
@@ -25,9 +26,15 @@ public class pakermanLevel {
     // enemies as part of a game logic not here
     // setting deltas for each enemy/player moe away from game logic
     protected List<pakermanEntity> obstacles = new ArrayList<pakermanEntity>();
+    protected List<pakermanObstacle> walls = new ArrayList<pakermanObstacle>();
+    protected List<pakermanDot> dots = new ArrayList<pakermanDot>();
     protected int width, height;
 
-    public List<pakermanEntity> getObstacles() {
+    public List<pakermanObstacle> getWalls() {
+        return walls;
+    }
+
+    public List<pakermanEntity> getObjects() {
         return obstacles;
     }
 
@@ -37,6 +44,16 @@ public class pakermanLevel {
 
     public int getHeight() {
         return height;
+    }
+
+    protected void addWall(pakermanObstacle e) {
+
+        walls.add(e);
+    }
+
+    protected void addDot(pakermanDot e) {
+
+        dots.add(e);
     }
 
     protected void loadFile(String fn) {
@@ -83,68 +100,94 @@ public class pakermanLevel {
             obstacles.add(new pakermanDot(dotType.normal));
 
         }
-        System.out.println(cnt);
+        //System.out.println(cnt);
     }
 
-    protected void bytesToLevel(byte [] bs) {
+    protected void bytesToLevel(byte[] bs) {
         this.width = 32;
         this.height = 32;
-        int cnt=32*32;
+        int cnt = 32 * 32;
         data = new entity_type[cnt];
-        for(int i=0; i<bs.length; i++) {
-            switch(bs[i]) {
+        pakermanEntity tmp;
+
+        for (int i = 0; i < bs.length; i++) {
+
+            if (bs[i] == 10 || bs[i] == 13) {
+                continue;
+            }
+
+            switch (bs[i]) {
                 case '4': {
-                    obstacles.add(new pakermanDot(dotType.normal));
+                    tmp = new pakermanDot(dotType.normal);
+                    addDot((pakermanDot) tmp);
                     break;
                 }
-                case ' ': {
-                    obstacles.add(new obstacleNone());
+                default: {
+                    tmp = new obstacleNone();
                     break;
                 }
-                case '3':
-              {
+                case '3': {
+
+                    tmp = new pakermanDot(dotType.big);
+                    addDot((pakermanDot) tmp);
                     //data[i]=entity_type.dot;
-                    obstacles.add(new pakermanDot(dotType.big));
+                    //addDot(new pakermanDot(dotType.big));
                     //System.out.print('x');
                     break;
                 }
-                case '5': {
-                      obstacles.add(new pakermanObstacle(obstacleType.horizontal));
+
+                case '5':
+                    tmp = new pakermanObstacle(obstacleType.h);
+                    addWall((pakermanObstacle) tmp);
                     break;
-                }
-                
+                case '6':
+                    tmp = new pakermanObstacle(obstacleType.vdl);
+                    addWall((pakermanObstacle) tmp);
+                    //addWall(new  pakermanObstacle(obstacleType.vdl));
+                    break;
+                case '7':
+                    tmp = new pakermanObstacle(obstacleType.vdr);
+                    addWall((pakermanObstacle) tmp);
+                    //addWall(new  pakermanObstacle(obstacleType.vdr));
+                    break;
+                case '8':
+                    tmp = new pakermanObstacle(obstacleType.vul);
+                    addWall((pakermanObstacle) tmp);
+                    //addWall(new  pakermanObstacle(obstacleType.vul));
+                    break;
+
+                case '2':
+                    tmp = new pakermanObstacle(obstacleType.vur);
+                    addWall((pakermanObstacle) tmp);
+                    //addWall(new  pakermanObstacle(obstacleType.vur));
+                    break;
+
                 case '1': {
-                   // data[i]=entity_type.empty;
-                     obstacles.add(new pakermanObstacle(obstacleType.vertical));
+                    tmp = new pakermanObstacle(obstacleType.v);
+                    addWall((pakermanObstacle) tmp);
+                    //  addWall(new pakermanObstacle(obstacleType.v));
                     break;
                 }
-                    //                case '1': {
-//                    System.out.print('w');
-//                    break;
-//                }
-//                case '2': {
-//                    System.out.print('T');
-//                    break;
-//                }
-                    
+
             }
-            
+            obstacles.add(tmp);
         }
-      
+
     }
-    
+
     pakermanLevel(String fn) {
         Path p = FileSystems.getDefault().getPath("./", fn);
-        byte[] bs=new byte[4048];
+        byte[] bs = new byte[4048];
         try {
-            bs = Files.readAllBytes(p);
-            
+            bs = Files.readAllBytes(p); //źle bo tu czyta entery
+
         } catch (IOException e) {
-         System.exit(666);
+            System.exit(666);
         }
-       
-         System.out.println("length: "+bs.length);
+
+        System.out.println("length: " + bs);
+
         bytesToLevel(bs);
-         System.out.println("length: "+obstacles.size());
+        System.out.println("length: " + obstacles.size());
     }
 }

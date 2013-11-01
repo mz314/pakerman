@@ -8,27 +8,22 @@ import java.awt.Toolkit;
 import java.util.Collection;
 import java.util.ListIterator;
 
-
-
-
 class gameLogic extends Thread {
+
     boolean exit = false;
     pakermanPlayer player;
     Applet applet;
+    int collisions = 0;
     protected pakermanLevel level;
-    List<pakermanEntity> objects=new ArrayList<pakermanEntity>(); 
-    public int w,h;
-    //public spawnPlayer
+    List<pakermanEntity> objects = new ArrayList<pakermanEntity>();
+    public int w, h;
 
-   
-    
-    public gameLogic(int w,int h) {
-     //objects=new entitiesList();
-        this.w=w;
-        this.h=h;
-    	System.out.println("W: "+w+"H: "+h);
-        level=new pakermanLevel("lvl.txt");
-        level.loadImages(w,h);
+    public gameLogic(int w, int h) {
+        this.w = w;
+        this.h = h;
+        System.out.println("W: " + w + "H: " + h);
+        level = new pakermanLevel("lvl.txt");
+        level.loadImages(w, h);
     }
 
     public void setUp() {
@@ -37,14 +32,6 @@ class gameLogic extends Thread {
         this.addPlayer(player);
     }
 
-    public List<pakermanEntity> getLevelObjects() {
-    	return level.getObstacles();
-    }
-    
-    public List<pakermanEntity> getObjects()  {
-        return objects;
-    }
-    
     public pakermanPlayer getPlayer() {
         return player;
     }
@@ -54,17 +41,31 @@ class gameLogic extends Thread {
         addObject(player);
     }
 
-   public void addObject(pakermanEntity e) {
-     //  if(e!=null && objects!=null)
-       
-       objects.add(e);
-   }
-   
+    public void addObject(pakermanEntity e) {
+        objects.add(e);
+    }
+
+    private void checkLevelCollisions() { // add delta changes later
+        List<pakermanObstacle> walls = level.getWalls();
+        pakermanEntity wall;
+        for (int i = 0; i < walls.size(); i++) {
+            wall = walls.get(i);
+            boolean col = player.collision(wall);
+            if (col) {
+                collisions++;
+                System.out.println("Collision counter: " + collisions);
+            } else {
+                // System.out.println(' ');
+            }
+        }
+    }
 
     public void run() {
         long stime = System.nanoTime();
         while (!exit) {
+            checkLevelCollisions();
             player.moveDelta();
+
             try {
                 Thread.sleep(10);
             } catch (Exception e) {
