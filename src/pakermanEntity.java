@@ -11,6 +11,7 @@ abstract class pakermanEntity extends Object {
 
     protected animation anim;
     public int x, y, w, h;
+    
     protected Image img;
     boolean drawn = false;
     public boolean square = false;
@@ -72,24 +73,33 @@ abstract class pakermanEntity extends Object {
         y += deltay;
     }
 
-    public boolean collision(pakermanEntity e) {
+  
+    
+    public boolean collision(pakermanEntity e,Point delta) {
+        int oldx=x,oldy=y;
+        x+=delta.x;
+        y+=delta.y;
+        boolean ret=false;     
         int ew=e.x+e.w,ww=this.x+this.w,eh=e.y+e.h,hh=this.y+this.h;
         
-        if(x<e.x+e.w && x+w>e.x && y<e.y+e.h && y+h>e.y) {
+        if(
+                x<e.x+e.w 
+                && x+w>e.x 
+                && y<e.y+e.h 
+                && y+h>e.y
+                ) {
        
-            return true;
+           ret=true;
              
         }
-           
-        else {
-            
-            return false;
-            
-        }
+        x=oldx;
+        y=oldy;
+        return ret;
     }
     
     public void show(Graphics2D g) {
         g.drawImage(img, x, y, null);
+        
     }
 
     abstract public String getMyImage();

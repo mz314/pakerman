@@ -1,34 +1,46 @@
 
+import java.awt.Graphics2D;
+import java.awt.Point;
+
+
 enum dotType {
     normal,
-    big
+    big,
+    off
 };
 
 class pakermanDot extends pakermanObject {
 
     dotType type;
     
-    int offsetx() {
-        if(this.type==dotType.big)
-            return 0;
-        else
-        return 5;
-    }
-    
-    int offsety() {
-        if(this.type==dotType.big)
-            return 0;
-        else
-        return 6;
+    public void off() {
+        this.type=dotType.off;
     }
     
     pakermanDot(dotType type) {
         this.type = type;
     }
 
+    @Override
+     public boolean collision(pakermanEntity e,Point delta) {
+         if(this.type!=dotType.off) {
+             boolean ret=super.collision(e,delta);
+             return ret;
+         }
+         return false;
+     }
+    
+    @Override
+    public void show(Graphics2D g) {
+        if(this.type!=dotType.off)
+         super.show(g);
+    }
+    
     @Override public String getMyImage() {
        if(this.type==dotType.normal)
          return "dot_small.png";
-       return "dot_big.png";
+       else if(this.type==dotType.big)
+        return "dot_big.png";
+       return "";
    }
 }

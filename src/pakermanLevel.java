@@ -33,11 +33,17 @@ public class pakermanLevel {
     public List<pakermanObstacle> getWalls() {
         return walls;
     }
-
+    
+    public List<pakermanDot> getDots() {
+        return dots;
+    }
+    
     public List<pakermanEntity> getObjects() {
         return obstacles;
     }
 
+    //public void removeDot()
+    
     public int getWidth() {
         return width;
     }
