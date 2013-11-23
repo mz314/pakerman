@@ -15,9 +15,13 @@ class pakermanPlayer extends pakermanCharacter {
 
     protected turnableAnimation anim;
     protected facing_dirs facing;
-    protected Rectangle needle; //move to player
+    
     protected int rotation = 0,lastx=0,lasty=0;
 
+    public pakermanPlayer(){
+        //super();
+    }
+    
     public void facing(facing_dirs facing) {
         switch (facing) {
             case LEFT:
@@ -36,13 +40,7 @@ class pakermanPlayer extends pakermanCharacter {
         this.facing = facing;
     }
 
-    public void setNeedle(int x, int y, int w, int h) { //x and y relative to upper left
-        needle = new Rectangle(x, y, w, h);
-    }
-    
-    public Rectangle getNeedle() {
-        return needle;
-    }
+   
 
     @Override
      public void move(int deltax, int deltay) {
@@ -73,6 +71,7 @@ class pakermanPlayer extends pakermanCharacter {
         //g.setColor(Color.BLUE);
         //g.fillRect(x, y, 32, 32);
         anim.show(g,x,y);
+        super.show(g);
 
     }
     
