@@ -185,7 +185,7 @@ public class pakermanLevel {
         Path p = FileSystems.getDefault().getPath("./", fn);
         byte[] bs = new byte[4048];
         try {
-            bs = Files.readAllBytes(p); //źle bo tu czyta entery
+            bs = Files.readAllBytes(p); 
 
         } catch (IOException e) {
             System.exit(666);
