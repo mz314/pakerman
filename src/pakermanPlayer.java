@@ -15,28 +15,49 @@ class pakermanPlayer extends pakermanCharacter {
 
     protected turnableAnimation anim;
     protected facing_dirs facing;
-    
+    protected Rectangle nleft,nright,nup,ndown;
     protected int rotation = 0,lastx=0,lasty=0;
 
     public pakermanPlayer(){
-        //super();
+          
+      
+    }
+    
+    @Override
+    public void setNeedle(int x, int y, int w, int h) {
+        super.setNeedle(x,y,w,h);
+        if(nleft==null) {
+            nright=new Rectangle(x+needle.width,y+needle.height/2,needle.width,needle.height);
+            nleft=new Rectangle(x,y+needle.height/2,w,h);
+            nup=new Rectangle(x+needle.width/2,0,needle.width,needle.height);
+            ndown=new Rectangle(x+needle.width/2,needle.height,needle.width,needle.height);
+        
+        }
     }
     
     public void facing(facing_dirs facing) {
+       
+        Rectangle n=null;
         switch (facing) {
             case LEFT:
                 anim.setFacing(0);
+                n=nleft;
                 break;
             case RIGHT:
                 anim.setFacing(2);
+                n=nright;
                 break;
             case UP:
                 anim.setFacing(1);
+                n=nup;
                 break;
             case DOWN:
+                n=ndown;
                 anim.setFacing(3);
                 break;
         }
+        if(n!=null)
+         setNeedle(n.x,n.y,n.width,n.height);
         this.facing = facing;
     }
 
@@ -60,13 +81,16 @@ class pakermanPlayer extends pakermanCharacter {
         y = 200;
         w = 16;
         h = 16;
-        anim.setFacing(2);
+        this.facing(facing_dirs.RIGHT);
+        
     }
 
+    @Override
     public String getMyImage() {
         return "pacman_animation";
     }
 
+    @Override
     public void show(Graphics2D g) {
         //g.setColor(Color.BLUE);
         //g.fillRect(x, y, 32, 32);

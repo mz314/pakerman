@@ -20,6 +20,7 @@ class gameLogic extends Thread {
     public int w, h;
 
     public gameLogic(int w, int h) {
+        player = new pakermanPlayer();
         this.w = w;
         this.h = h;
         System.out.println("W: " + w + "H: " + h);
@@ -28,7 +29,7 @@ class gameLogic extends Thread {
     }
 
     public void setUp() {
-        player = new pakermanPlayer();
+        
         player.loadImg();
         this.addPlayer(player);
     }

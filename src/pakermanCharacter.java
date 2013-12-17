@@ -10,12 +10,14 @@ abstract class pakermanCharacter extends pakermanEntity {
     protected Rectangle needle=new Rectangle(0,0,10,10); 
     
     public pakermanCharacter() {
-       // setNeedle(0,0,10,10);
+        setNeedle(0,0,10,10);
     }
     
     public void moveDelta() {
         this.move(deltax, deltay);
     }
+    
+    
     
      public void setNeedle(int x, int y, int w, int h) { //x and y relative to upper left
         needle = new Rectangle(x, y, w, h);
@@ -24,7 +26,10 @@ abstract class pakermanCharacter extends pakermanEntity {
       public void show(Graphics2D g) {
         if(needle==null)
             return;
-          g.setColor(Color.BLUE);
+//        System.out.println(needle.x);
+//        System.out.println(needle.y);
+//        System.out.println("----");
+        g.setColor(Color.BLUE);
         g.fillRect(needle.x+x,needle.y+y,needle.width,needle.height);
       }
      
